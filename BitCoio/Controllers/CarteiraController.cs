@@ -1,3 +1,4 @@
+using BitCoio.Entities;
 using BitCoio.Extensions;
 using BitCoio.Handlers.AdicionarSaldo;
 using BitCoio.Handlers.ConsultaSaldo;
@@ -8,6 +9,7 @@ using BitCoio.Handlers.RetirarSaldo;
 using BitCoio.Handlers.TransferenciaEntreCarteiras;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BitCoio.Controllers
 {
@@ -35,6 +37,24 @@ namespace BitCoio.Controllers
             var response = await _mediator.Send(request);
 
             return response.ApiResult();
+        }
+
+        [HttpGet("cotacaoBitcoin", Name = "GetCotacaoDoBitCoinDaData")]
+        public async Task<CurrencyDto> GetCotacaoDoBitCoinDaData(DateTime data)
+        {
+            var client = new HttpClient();
+
+            if (data == DateTime.MinValue)
+                throw new ArgumentException("Data invalida.");
+
+            var baseurl = $"https://www.mercadobitcoin.net/api/BTC/day-summary/{data.Year}/{data.Month}/{data.Day}";
+
+            var cotacao = await client.GetAsync(baseurl);
+
+            var genericDto = JsonConvert.DeserializeObject<CurrencyDto>(cotacao.Content.ReadAsStringAsync().Result);
+
+            return genericDto;
+
         }
 
         [HttpGet("transacoes/{id}", Name = "GetTransacoesCarteira")]

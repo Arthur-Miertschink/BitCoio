@@ -79,3 +79,4 @@ C:\Users\arthu\source\repos\BitCoio\BitCoio\bin\Debug\net7.0\MediatR.dll
 C:\Users\arthu\source\repos\BitCoio\BitCoio\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Users\arthu\source\repos\BitCoio\BitCoio\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\arthu\source\repos\BitCoio\BitCoio\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\arthu\source\repos\BitCoio\BitCoio\bin\Debug\net7.0\Newtonsoft.Json.dll
